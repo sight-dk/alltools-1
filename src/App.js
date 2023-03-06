@@ -11,8 +11,8 @@ import { useStateContext } from './contexts/ContextProvider';
 
 
 import './App.css';
-import Dasbboard from './pages/Dasbboard';
-
+import Dashboard from './pages/Dashboard';
+import Login from "./pages/Login"
 
 const App = () => {
   const {activeMenu} = useStateContext();
@@ -22,40 +22,20 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <div className='flex relative dark:bg-main-dark-bg'>
-          <div className='fixed right-4 bottom-4' style={{zIndex: '1000'}}>
-            <TooltipComponent content='Settings' position='Top'>
-              <button type="button" className='text-3xl p-2 hover:drop-shadow-xl hover:bg-light-gray text-white' style={{background: 'blue', borderRadius: '50%'}}>
-                <FiSettings type="Button" />
-              </button>
-            </TooltipComponent>
-          </div>
-          {activeMenu ? (
-            <div className='flex-none w-72 sidebar dark:bg-secondary-dark-bg bg-white'>
-              <Sidebar />
-            </div>
-          ) : (
-            <div className='w-0'>
-              <Sidebar />
-            </div>
-          )}
-        <div className={"flex-1 dark:bg-main-bg bg-main-bg min-h-screen w-full ${activeMenu ? 'md:ml-72' : 'flex-2'}"
-            
-          }>
-            <div className='md:static bg-main-bg dark:bg-main-dark-bg navbar w-full'>
-            <Navbar />
-            
-        </div>
+      
+          
 
           <div>
             <Routes>
 
               {/* Dashbboard */}
-              <Route path="/" element={<Dasbboard/>} />
+              <Route path="/dashboard" element={<Dashboard/>} />
               <Route path="/ecommerce" element={<Ecommerce/>} />
 
 
               {/* Pages */}
+              <Route path="/" element={<Login/>} />
+              <Route path="/dashboard" element={<Dashboard/>}  />
               {/* <Route path="/orders" element='test' />
               <Route path="/employees" element='test' />
               <Route path="/customers" element={<Customers/>} /> */}
@@ -77,9 +57,9 @@ const App = () => {
               <Route path="/stacked" element='test' /> */}
             </Routes>
           </div>
-          </div>
 
-      </div>
+
+     
       </BrowserRouter>
     </div>
   )
