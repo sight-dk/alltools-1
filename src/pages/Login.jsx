@@ -4,7 +4,7 @@ import '.././App.css';
 export default () => {
     
     return (
-    
+        
            
         <div className = "flex w-full h-screen">
             
@@ -44,7 +44,7 @@ export default () => {
                         <button className = "ml-2 font-medium text-base text-violet-500"> Forgot password? </button>
                     </div>
                     <div className = "mt-8 flex flex-col gap-y-4">
-                        <button className='active:scale-[.98] active: duration-75 hover:scale-[1.01 ease-in-out] transition-all py-3 rounded-xl bg-violet-500 text-white text-lg font-bold'> Sign In </button>
+                        <button className='active:scale-[.97] active: duration-75 hover:scale-[1.01 ease-in-out] transition-all py-3 rounded-xl bg-gradient-to-tr from-green-300 to-blue-500 drop-shadow-md text-white text-lg font-bold'> Sign In </button>
 
 
                         
@@ -59,8 +59,8 @@ export default () => {
             </div>
             </div>
             <div className='hidden relative lg:flex h-full w-1/2 items-center justify-center bg-gray-200'>
-            <div className = "w-60 h-60 bg-gradient-to-tr from-violet-500 to-pink-500 rounded-full animate-bounce"></div>
-            <div className = "w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg"></div>
+            <div className = "w-60 h-60 bg-gradient-to-tr from-green-300 to-blue-500 rounded-full animate-bounce"></div>
+            <div className = "w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg"></div> 
 
             </div>
             
