@@ -10,6 +10,21 @@ module.exports = {
         fontSize: {
           14: '14px',
         },
+        keyframes: {
+          wave: {
+            '0%': { transform: 'rotate(0.0deg)' },
+            '10%': { transform: 'rotate(14deg)' },
+            '20%': { transform: 'rotate(-8deg)' },
+            '30%': { transform: 'rotate(14deg)' },
+            '40%': { transform: 'rotate(-4deg)' },
+            '50%': { transform: 'rotate(10.0deg)' },
+            '60%': { transform: 'rotate(0.0deg)' },
+            '100%': { transform: 'rotate(0.0deg)' },
+          },
+        },
+        animation: {
+          'waving-hand': 'wave 2s linear infinite',
+        },
         backgroundColor: {
           'main-bg': '#FAFBFB',
           'main-dark-bg': '#20232A',
@@ -38,11 +53,9 @@ module.exports = {
         minHeight: {
           590: '590px',
         },
-        backgroundImage: {
-          'hero-pattern':
-            "url('https://demos.wrappixel.com/premium-admin-templates/react/flexy-react/main/static/media/welcome-bg-2x-svg.25338f53.svg')",
-        },
+     
       },
     },
     plugins: [],
+    
   };
