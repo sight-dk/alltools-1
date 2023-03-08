@@ -19,8 +19,7 @@ import { RequireAuth } from './components/RequireAuth';
 const App = () => {
   const {activeMenu} = useStateContext();
 
-  
-  
+
   return (
     <div>
       <AuthProvider>

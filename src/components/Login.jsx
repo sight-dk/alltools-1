@@ -2,6 +2,8 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useAuth } from './auth'
 import { useNavigate, useLocation } from 'react-router-dom'
+import axios from 'axios';
+
 
 export const Login = () => {
     const[user, setUser] = useState('')
@@ -11,14 +13,48 @@ export const Login = () => {
 
     const redirectPath = location.state?.path || '/dashboard'
 
-
-    const handleLogin = () => {
-        auth.login(user)
-        navigate(redirectPath, {replace: true})
+    // const handleLogin = () => {
+    //     auth.login(user)
+    //     navigate(redirectPath, {replace: true})
         
-    }
+    // }
 
-   
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+
+
+    const handleRegister = async () => {
+        try {
+        const response = await axios.post('/register', {
+            name,
+            email,
+            password,
+        });
+        setMessage(response.data.message);
+        } catch (error) {
+        setMessage(error.response.data.message);
+        }
+    };
+
+    const handleLogin = async () => {
+        try {
+          const response = await axios.post('/login', {
+            email,
+            password,
+          });
+          setMessage(response.data.message);
+        } catch (error) {
+          if (error.response) {
+            alert(error.response.config.url);
+          } else {
+            alert(error.message);
+          }
+        }
+      };
+      
 
     return (
         
@@ -34,7 +70,8 @@ export const Login = () => {
                     <div>
                         <label className='text-15 font-medium'>Email</label>
                         <input
-                            onChange={e => setUser(e.target.value)}
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                             type = "text"
                             className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 h-12 mb-4 bg-transparent'
                             placeholder = "Enter your email"
@@ -42,7 +79,9 @@ export const Login = () => {
 
                         <label className='text-15 font-medium'>Password</label>
                         <input
-                            type = "text"
+                            value={password}
+                            onChange = {(e) => setPassword(e.target.value)}
+                            type = "password"
                             className='w-full border-2 border-gray-100 rounded-xl p-4 mt-1 h-12 bg-transparent text-12'
                             placeholder = "Enter your password"
                         ></input>   
@@ -78,7 +117,7 @@ export const Login = () => {
             </div>
             <div className='hidden relative lg:flex h-full w-1/2 items-center justify-center bg-white'>
            
-            <div class="w-60 h-60 bg-gradient-to-tr from-green-300 to-blue-500 rounded-full animate-bounce"></div> 
+            <div className="w-60 h-60 bg-gradient-to-tr from-green-300 to-blue-500 rounded-full animate-bounce"></div> 
             <div className = "w-1/2 h-1/2 absolute bottom-1 bg-white/10 backdrop-blur"></div>
             {/* <div class="flex justify-between relative inline-block">
             
@@ -100,6 +139,8 @@ export const Login = () => {
           
             
             
+          
+            {message && <p>{message}</p>}
             
 
         </div>
