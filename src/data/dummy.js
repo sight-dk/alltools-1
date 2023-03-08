@@ -13,6 +13,15 @@ import { GrLocation } from 'react-icons/gr';
 import avatar4 from './avatar4.jpg';
 
 
+export const users = [
+  {
+    firstName: 'Riccardo',
+    lastName: 'Pansini'
+
+  }
+
+];
+
 
 export const links = [
   {
@@ -20,52 +29,69 @@ export const links = [
       {
         name: 'Dashboard',
         icon: '🏠',
+        dest: 'dashboard'
       },
     ],
   },
 
   {
-    title: 'Pages',
+    title: 'Reports',
     links: [
       {
-        name: 'orders',
-        icon: <AiOutlineShoppingCart />,
+        name: 'Generate report',
+        icon: '📝',
+        dest: 'genreport'
       },
       {
-        name: 'employees',
-        icon: <IoMdContacts />,
+        name: 'View reports',
+        icon: '👀',
+        dest: 'viewreports'
+      },
+
+    ],
+  },
+  {
+    title: 'Copywriting',
+    links: [
+      {
+        name: 'Write a new copy',
+        icon: '✍️',
+        dest: 'writecopy'
       },
       {
-        name: 'customers',
-        icon: <RiContactsLine />,
+        name: 'View copies',
+        icon: '🖥',
+        dest: 'viewcopies'
+      },
+      {
+        name: 'Copywriting analysis',
+        icon: '⌨️',
+        dest: 'copyanalysis'
       },
     ],
   },
   {
-    title: 'Apps',
+    title: 'Facebook & Instagram Ads',
     links: [
       {
-        name: 'calendar',
-        icon: <AiOutlineCalendar />,
-      },
-      {
-        name: 'kanban',
-        icon: <BsKanban />,
-      },
-      {
-        name: 'editor',
-        icon: <FiEdit />,
-      },
-      {
-        name: 'color-picker',
-        icon: <BiColorFill />,
+        name: 'Find ads',
+        icon: '📱',
+        dest: 'findads'
       },
     ],
   },
-  
 ];
 
-
+export const linksComing = [
+  {
+    title: 'Coming Soon...',
+    title2: 'SEO & Google', 
+    title3: 'Ad tracker',
+    links: [{
+      
+    }]
+  },
+];
 
 
 export const earningData = [

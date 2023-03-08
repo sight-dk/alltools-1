@@ -5,13 +5,13 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 
 import { Navbar, Footer, Sidebar, ThemeSettings} from './components';
-import { Ecommerce} from './pages';
+import { CopyAnalysis, Ecommerce, FindAds, GenReport, ViewCopies, ViewReports, WriteCopy} from './pages';
 
 import { useStateContext } from './contexts/ContextProvider';
 
 
 import './App.css';
-import Dasbboard from './pages/Dasbboard';
+import Dashboard from './pages/Dashboard';
 
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
         <div className='flex relative dark:bg-main-dark-bg'>
           <div className='fixed right-4 bottom-4' style={{zIndex: '1000'}}>
             <TooltipComponent content='Settings' position='Top'>
-              <button type="button" className='text-3xl p-2 hover:drop-shadow-xl hover:bg-light-gray text-white' style={{background: 'blue', borderRadius: '50%'}}>
+              <button type="button" className='text-3xl p-2 hover:drop-shadow-xl hover:bg-light-gray text-white bg-gradient-to-r from-green-300 to-blue-500 ' style={{borderRadius: '50%'}}>
                 <FiSettings type="Button" />
               </button>
             </TooltipComponent>
@@ -50,31 +50,23 @@ const App = () => {
           <div>
             <Routes>
 
-              {/* Dashbboard */}
-              <Route path="/" element={<Dasbboard/>} />
-              <Route path="/ecommerce" element={<Ecommerce/>} />
+              {/* Dashboard */}
+              <Route path="/" element={<Dashboard/>} />
+              <Route path="/Dashboard" element={<Dashboard/>} />
 
 
-              {/* Pages */}
-              {/* <Route path="/orders" element='test' />
-              <Route path="/employees" element='test' />
-              <Route path="/customers" element={<Customers/>} /> */}
+              {/* Reports */}
+              <Route path="/genreport" element={<GenReport/>} />
+              <Route path="/viewreports" element={<ViewReports/>} />
 
-              {/* Apps */}
-              {/* <Route path="/kankan" element='test' />
-              <Route path="/editor" element='test' />
-              <Route path="/calendar" element='test' />
-              <Route path="/color-picker" element='test' /> */}
+              {/* CopyWriting */}
+              <Route path="/writecopy" element={<WriteCopy/>} />
+              <Route path="/viewcopies" element={<ViewCopies/>} />
+              <Route path="/copyanalysis" element={<CopyAnalysis/>} />
+              
 
-              {/* Charsts  */}
-              {/* <Route path="/line" element='test' />
-              <Route path="/area" element='test' />
-              <Route path="/bar" element='test' />
-              <Route path="/pie" element='test' />
-              <Route path="/financial" element='test' />
-              <Route path="/color-mapping" element='test' />
-              <Route path="/pymarid" element='test' />
-              <Route path="/stacked" element='test' /> */}
+              {/* Facebook & Instagram  */}
+              <Route path="/FindAds" element={<FindAds/>} />
             </Routes>
           </div>
           </div>

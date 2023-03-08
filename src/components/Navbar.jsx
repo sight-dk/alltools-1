@@ -11,7 +11,7 @@ import { useStateContext } from '../contexts/ContextProvider';
 
 const NavButton = ( {title, customFunc, icon, color, dotColor}) => (
   <TooltipComponent content={title} position='BottomCenter'>
-    <button type="button" onClick={customFunc} style={{color}} className="relative text-xl rounded-full p-3 hover:bg-light-gray ">
+    <button type="button" onClick={customFunc} className="relative text-xl rounded-full p-3 hover:bg-light-gray text-green-300">
       <span style={{ background: dotColor }} className='absolute inline-flex rounded-full h-2 w-2 right-2 top-2 '
       />
       {icon}
@@ -47,11 +47,10 @@ const Navbar = () => {
   
   return (
     <div className='flex justify-between pd-2 md:mx-3 relative'>
-      <NavButton title='Menu' customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} color='blue' icon={<AiOutlineMenu />} />
+      <NavButton title='Menu' customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} color='green-300' icon={<AiOutlineMenu />}  />
     
     <div className='flex'>
 
-      {/* Cart */}
       
 
       <TooltipComponent content='Profile' position='BottomCenter'>
@@ -61,7 +60,7 @@ const Navbar = () => {
           <p className='flex' position='BottomCenter'>
           <span className='text-gray-400 text-14'>Hi, </span> {' '} 
           <span className='text-gray-400 font-bold ml-1 text-14'> Michael</span>
-          <MdKeyboardArrowDown className='text-gray-400 text-14' />
+          <MdKeyboardArrowDown className='text-gray-400 text-20' />
           </p>
         </div>
 

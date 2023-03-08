@@ -4,9 +4,16 @@ module.exports = {
     theme: {
       fontFamily: {
         display: ['Inter', 'system-ui', 'sans-serif'],
+        'serif': ['ui-serif', 'Georgia'],
+        'mono': ['ui-monospace', 'SFMono-Regular'],
       body: ['Inter', 'system-ui', 'sans-serif'],
       },
       extend: {
+        textShadow: {
+          sm: '0 1px 2px var(--tw-shadow-color)',
+          DEFAULT: '0 2px 4px var(--tw-shadow-color)',
+          lg: '0 8px 16px var(--tw-shadow-color)',
+        },
         fontSize: {
           14: '14px',
         },
@@ -44,5 +51,5 @@ module.exports = {
         },
       },
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/forms')], 
   };
