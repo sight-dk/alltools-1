@@ -28,8 +28,9 @@ const Sidebar = () => {
       <div className='flex justify-between items-center mt-15'>
         <Link to="/Dashboard" onClick={() => handleCloseSideBar} className='items-center gap-3 ml-3 mt-4 flex text-3xl font-extrabold tracking-tight dark:text-white text-slate-900'>
           {/* <SiShopware />  */}
-          <span className='ml-4 text-transparent bg-clip-text bg-gradient-to-br from-green-300 to-blue-500'>AllTools</span>
-          <span className='pb-2 rotate-12'>🔨</span>
+          <div class="ml-4 w-5 h-5 bg-gradient-to-tr from-green-300 to-blue-500 rounded-full animate-bounce"></div> 
+          <span className='text-transparent bg-clip-text bg-gradient-to-br from-green-300 to-blue-500'>AllTools</span>
+          {/* <span className='pb-2 rotate-12'>🔨</span> */}
           {/* <img src={require("../../src/data/AT Logo.png")} style={{width: 75, height: 75}} className='ml-2'/>  */}
         </Link>
         <TooltipComponent content="Menu" position='BottomCenter'>
