@@ -31,7 +31,7 @@ const App = () => {
               <Routes>
 
                 {/* Dashbboard */}
-                <Route path="/dashboard" element={<RequireAuth><Dashboard/></RequireAuth>} />
+                <Route path="/dashboard" element={<Dashboard/>} />
                 <Route path="/ecommerce" element={<Ecommerce/>} />
 
                 

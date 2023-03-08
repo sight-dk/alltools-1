@@ -1,17 +1,17 @@
 import * as React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from './auth'
 import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios';
 
 
 export const Login = () => {
-    const[user, setUser] = useState('')
-    const auth = useAuth()
+    // const[user, setUser] = useState('')
+    // const auth = useAuth()
     const navigate = useNavigate()
-    const location = useLocation()
+    // const location = useLocation()
 
-    const redirectPath = location.state?.path || '/dashboard'
+    // const redirectPath = location.state?.path || '/dashboard'
 
     // const handleLogin = () => {
     //     auth.login(user)
@@ -24,21 +24,38 @@ export const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [cookie, setCookie] = useState('');
 
+ 
+    // const handleRegister = async () => {
+    //     try {
+    //     const response = await axios.post('/register', {
+    //         name,
+    //         email,
+    //         password,
+    //     });
+    //     setMessage(response.data.message);
+    //     } catch (error) {
+    //     setMessage(error.response.data.message);
+    //     }
+    // };
+    const api = axios.create({
+    baseURL: '/',
+    withCredentials: true // Enable cookies
+    });
 
-    const handleRegister = async () => {
-        try {
-        const response = await axios.post('/register', {
-            name,
-            email,
-            password,
-        });
-        setMessage(response.data.message);
-        } catch (error) {
-        setMessage(error.response.data.message);
-        }
-    };
+    // Add interceptor to handle 401 errors
+    // api.interceptors.response.use(
+    //     response => response,
+    //     error => {
+    //         if (error.response && error.response.status === 401) {
+    //         window.location.href = '/login'; // Redirect to login page
+    //         }
+    //         return Promise.reject(error);
+    //     }
+    // );
 
+    
     const handleLogin = async () => {
         try {
           const response = await axios.post('/login', {
@@ -48,7 +65,10 @@ export const Login = () => {
           setMessage(response.data.message);
           setName(response.data.name)
           setEmail(response.data.email)
-
+           // Redirect to dashboard if login successful
+        if (response.data.message === "Logged in!") {
+            navigate("/dashboard")
+        }
         } catch (error) {
           if (error.response) {
             alert(error.response.config.url);
@@ -58,6 +78,27 @@ export const Login = () => {
         }
       };
       
+      const checkLogin = async () => {
+        try {
+          const response = await axios.get('/checklogin', { withCredentials: true });
+          
+          if (response.data.message === 'Logged in') {
+            navigate('/dashboard');
+          }
+        } catch (error) {
+          if (error.response) {
+            //alert(error.response.config.url);
+          } else {
+            //alert(error.message);
+          }
+        }
+      };
+      
+      // Call checkLogin when the component is mounted
+      useEffect(() => {
+        checkLogin();
+      }, []);
+
 
     return (
         
@@ -146,6 +187,7 @@ export const Login = () => {
             {message && <p>{message}</p>}
             {name && <p>{name}</p>}
             {email && <p>{email}</p>}
+            {cookie && <p>{cookie}</p>}
 
         </div>
   
