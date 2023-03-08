@@ -46,6 +46,9 @@ export const Login = () => {
             password,
           });
           setMessage(response.data.message);
+          setName(response.data.name)
+          setEmail(response.data.email)
+
         } catch (error) {
           if (error.response) {
             alert(error.response.config.url);
@@ -141,7 +144,8 @@ export const Login = () => {
             
           
             {message && <p>{message}</p>}
-            
+            {name && <p>{name}</p>}
+            {email && <p>{email}</p>}
 
         </div>
   
