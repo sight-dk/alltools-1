@@ -11,7 +11,7 @@ export const Dashboard = () => {
   useEffect(() => {
     const fetchUserName = async () => {
       try {
-        const response = await axios.get("/dashboard");
+        const response = await axios.get("https://venv-pu4kpz7p4-sight-dk.vercel.app/dashboard");
         setUserName(response.data.name);
       } catch (error) {
         console.log(error);
@@ -26,7 +26,7 @@ export const Dashboard = () => {
     try {
 
       document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      await axios.post("/logout");
+      await axios.post("https://venv-pu4kpz7p4-sight-dk.vercel.app/logout");
       
 
       navigate("/");

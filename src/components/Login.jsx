@@ -58,7 +58,7 @@ export const Login = () => {
     
     const handleLogin = async () => {
         try {
-          const response = await axios.post('/login', {
+          const response = await axios.post('https://venv-pu4kpz7p4-sight-dk.vercel.app/login', {
             email,
             password,
           });
@@ -80,7 +80,7 @@ export const Login = () => {
       
       const checkLogin = async () => {
         try {
-          const response = await axios.get('/checklogin', { withCredentials: true });
+          const response = await axios.get('https://venv-pu4kpz7p4-sight-dk.vercel.app/checklogin', { withCredentials: true });
           
           if (response.data.message === 'Logged in') {
             navigate('/dashboard');
