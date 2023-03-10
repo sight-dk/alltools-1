@@ -109,7 +109,7 @@ export const Login = () => {
             <div className='bg-white px-10 py-20 rounded-2xl drop-shadow-md border-1 border-grey-200 w-10/12 h-8/12'>
           
                 <h1 className = "text-3xl font-semibold">Welcome Back</h1>
-                <p className='font-medium text-lg text-gray-500 mt-4'>Welcome Back, please enter your details</p>
+                <p className='font-medium text-lg text-gray-500 mt-4'>AMK Back, please enter your details</p>
                 <div className='mt-8'>
                     <div>
                         <label className='text-15 font-medium'>Email</label>
