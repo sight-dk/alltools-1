@@ -28,7 +28,8 @@ const WriteCopy = () => {
   const [includeUsp, setIncludeUsp] = useState(false) 
   const [cta, setCta] = useState(true)
   const [simplification, setSimplification] = useState(true)
-  const [uspToCopy, setUspToCopy] = useState(usp)
+  const [uspToCopy, setUspToCopy] = useState('')
+  const [textareaOpen, setTextareaOpen] = useState(false);
 
   
  
@@ -36,30 +37,41 @@ const WriteCopy = () => {
   function handleRadioChange(e) {
     if (e.target.name === 'include-usp') {
       setIncludeUsp(true);
+      setTextareaOpen(true);
     } else if (e.target.name === 'no-usp') {
       setIncludeUsp(false);
+      if (textareaOpen) {
+        setUspToCopy(usp);
+      } if (!textareaOpen) {
+        setUspToCopy('No USPs included');
+      }
+      
+      else {
+        setUspToCopy('No USPs included');
+      }
+      setTextareaOpen(false);
       setUsp('');
     }
   }
   
   function handleTextareaChange(e) {
     setUsp(e.target.value);
+    if (uspToCopy == '') {
+      setUspToCopy('No USPs included');
+    } else if (includeUsp) {
+      setUspToCopy(usp);
+    }
   }
 
-  function generateCopy(compName, product, keywords, usp, tov, hook, emojis, simple, includeUsp) {
-    const copyString = `Write a ${tov} ad copy for the following product to run on ${compName} based on these parameters:\n\nProduct: ${product}\n\nUnique Selling Points: ${usp}\n\nHook: ${hook}\n\nEmojis: ${emojis}\n\nCall to action: ${cta}\n\nSimplify: ${simplification}\n\n`;
-    
+  function generateCopy(compName, product, keywords, uspToCopy, tov, hook, emojis, simple, includeUsp) {
+    const copyString = `Write a ${tov} ad copy for the following product to run on ${compName} based on these parameters:\n\nProduct: ${product}\n\nUnique Selling Points: ${uspToCopy}\n\nHook: ${hook}\n\nEmojis: ${emojis}\n\nCall to action: ${cta}\n\nSimplify: ${simplification}\n\n`;
+  
     return copyString;
-  }
+  }  
 
   
 
   const handleGenerateCopy = () => {
-    if (uspToCopy == '') {
-      setUspToCopy('No USPs included');
-    } else {
-      setUspToCopy(usp)
-    }
       
     const copyString = generateCopy(compName, product, keywords, uspToCopy, tov, hook, emojis, simple, includeUsp);
     setCopyOutput(copyString);
@@ -308,7 +320,7 @@ const WriteCopy = () => {
                   </div>
 
                   <div className = "mt-8 flex-col gap-y-4 grid justify-items-end">
-                      <button onClick={handleGenerateCopy} className='active:scale-[.97] active: duration-75 hover:scale-[1.01 ease-in-out] transition-all py-3 rounded-md bg-gradient-to-tr from-green-300 to-blue-500 shadow-md text-white text-24 font-bold w-3/12'> Submit </button>               
+                      <button onClick={handleGenerateCopy} className='active:scale-[.97] active: duration-75 hover:scale-[1.01 ease-in-out] transition-all py-3 rounded-md bg-gradient-to-tr from-green-300 to-blue-500 shadow-md text-white text-24 font-bold w-3/12 '> Submit </button>               
                       
                   </div>
               </div>
@@ -324,11 +336,23 @@ const WriteCopy = () => {
 
               <div className=''>
                 <textarea
-                className='block mt-3 p-2.5 w-full text-md text-gray-a900 bg-transparent rounded-lg border-2 border-gray-200 focus:ring-blue-500 focus:border-green-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:italic'
+                className='block mt-3 p-2.5 w-full text-md text-gray-a900 bg-transparent rounded-lg border-2 border-gray-200 focus:ring-blue-500 focus:border-green-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:italic '
                 rows='16'
                 placeholder='Our AI will output your ad copy here.'
                 value={copyOutput}
-                />             
+                />
+
+                  {/* <div className = "mt-8 flex-col gap-y-4 grid ">
+                      <button onClick={handleGenerateCopy} className=' items-start active:scale-[.97] active: duration-75 hover:scale-[1.01 ease-in-out] transition-all py-3 rounded-md  shadow-md text-white text-24 font-bold w-3/12 '> Save </button>               
+                      <button onClick={handleGenerateCopy} className=' items-end active:scale-[.97] active: duration-75 hover:scale-[1.01 ease-in-out] transition-all py-3 rounded-md bg-black shadow-md text-white text-24 font-bold w-3/12 '> Submit </button>               
+                      
+                  </div> */}
+                  <div className = "mt-8 flex-col gap-y-4 grid justify-items-end">
+                      
+                      
+                  </div>
+
+
                 
 
               {/* <form onSubmit={AiPrompt}>
