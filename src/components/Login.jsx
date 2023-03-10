@@ -183,11 +183,7 @@ export const Login = () => {
           
             
             
-          
-            {message && <p>{message}</p>}
-            {name && <p>{name}</p>}
-            {email && <p>{email}</p>}
-            {cookie && <p>{cookie}</p>}
+            
 
         </div>
   
