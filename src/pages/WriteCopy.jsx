@@ -11,22 +11,8 @@ import './pagesStyle.css';
 
 
 
-const WriteCopy = () => {
 
-  
-  const handleLogin = () => {
-    auth.login(user)
-    navigate(redirectPath, {replace: true})    
-  }
-
-  
-
-  
-
-  const changeBgColor =()=>{
-    let purple = '#A020F0';
-    setBgColor(purple);
-  }
+const WriteCopy = () => {  
 
   const [compName, setCompName] = useState('')
   const [link, setLink] = useState('')
@@ -37,16 +23,15 @@ const WriteCopy = () => {
   const [hook, setHook] = useState(false)
   const [emojis, setEmojis] = useState('')
   const [simple, setSimple] = useState(false)
-  const [copyInput, setCopyInput] = useState(compName, product, keywords, usp, tov, hook, emojis, simple)
+  const [copyInput, setCopyInput] = useState('')
   const [copyOutput, setCopyOutput] = useState('')
-  const [includeUsp, setIncludeUsp] = useState(false)
-  
-  
-  
-
-
+  const [includeUsp, setIncludeUsp] = useState(false) 
+  const [cta, setCta] = useState(true)
+  const [simplification, setSimplification] = useState(true)
+  const [uspToCopy, setUspToCopy] = useState(usp)
 
   
+ 
 
   function handleRadioChange(e) {
     if (e.target.name === 'include-usp') {
@@ -61,19 +46,35 @@ const WriteCopy = () => {
     setUsp(e.target.value);
   }
 
-  function AiPrompt() {
+  function generateCopy(compName, product, keywords, usp, tov, hook, emojis, simple, includeUsp) {
+    const copyString = `Write a ${tov} ad copy for the following product to run on ${compName} based on these parameters:\n\nProduct: ${product}\n\nUnique Selling Points: ${usp}\n\nHook: ${hook}\n\nEmojis: ${emojis}\n\nCall to action: ${cta}\n\nSimplify: ${simplification}\n\n`;
+    
+    return copyString;
+  }
 
-    
-    
-    const aiPrompt = async (copyInput) => {
-      const inputPrompt = `Write a ${copyInput.tov} ad copy for the following product to run on ${copyInput.compName} based on these parameters:\n\nProduct: ${copyInput.product}\n\nUnique Selling Points: ${copyInput.usp}\n\nHook: ${copyInput.hook}\n\nEmojis: ${copyInput.emojis}\n\nCall to action: ${copyInput.cta}\n\nSimplify: ${copyInput.simplification}\n\n`;
+  
+
+  const handleGenerateCopy = () => {
+    if (uspToCopy == '') {
+      setUspToCopy('No USPs included');
+    } else {
+      setUspToCopy(usp)
+    }
       
+    const copyString = generateCopy(compName, product, keywords, uspToCopy, tov, hook, emojis, simple, includeUsp);
+    setCopyOutput(copyString);
+  };
+  
+  console.log("copyOutput = ", { copyOutput });
+
+  function AiPrompt() {
+  
+    const aiPrompt = async (copyInput) => {
       
       const configuration = new Configuration({
         apiKey: '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',
       });
       const openai = new OpenAIApi(configuration);
-
 
       const response = await openai.createCompletion({
         engine: 'text-davinci-003',
@@ -99,16 +100,14 @@ const WriteCopy = () => {
 
 
     setCopyOutput(aiPrompt);
-    // console.log(aiPrompt.text);
   }
-  
 
   return (
 
     
     <div>
       
-      <div className = "flex w-12/12 h-screen bg-white dark:bg-secondary-dark-bg rounded-3xl p-8 pt-9 m-10 mt-2 relative drop-shadow-lg overflow-y-auto lg:flex-wrap lg:flex md:flex-col md:flex- sm:flex-col sm:flex-nowrap xs:flex-col flex-col">
+      <div className = "flex w-12/12 h-screen bg-white dark:bg-secondary-dark-bg rounded-3xl p-8 pt-9 m-10 mt-2 shadow-lg  overflow-y-auto lg:flex-wrap lg:flex md:flex-col md:flex- sm:flex-col sm:flex-nowrap xs:flex-col flex-col">
             
             
             <div className = "w-full flex-nowrap items-center justify-center lg:w-1/2">
@@ -125,7 +124,8 @@ const WriteCopy = () => {
                   
                   <span className='font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-300 to-blue-500'> AI </span> 
                   write your ad copy. Tell us more, and get 
-                  <span className='font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-300 to-blue-500'> better results</span>.
+                  <span className='font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-300 to-blue-500'> better</span>
+                  <span className='font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-300 to-blue-500'> results</span>.
               </p>
 
               <div className='mt-4'>
@@ -308,7 +308,7 @@ const WriteCopy = () => {
                   </div>
 
                   <div className = "mt-8 flex-col gap-y-4 grid justify-items-end">
-                      <button onClick = {AiPrompt} className='active:scale-[.97] active: duration-75 hover:scale-[1.01 ease-in-out] transition-all py-3 rounded-md bg-gradient-to-tr from-green-300 to-blue-500 drop-shadow-md text-white text-24 font-bold w-3/12'> Submit </button>               
+                      <button onClick={handleGenerateCopy} className='active:scale-[.97] active: duration-75 hover:scale-[1.01 ease-in-out] transition-all py-3 rounded-md bg-gradient-to-tr from-green-300 to-blue-500 shadow-md text-white text-24 font-bold w-3/12'> Submit </button>               
                       
                   </div>
               </div>
@@ -316,7 +316,7 @@ const WriteCopy = () => {
 
             </div>
             </div>
-            <div className='relative flex-wrap h-full lg:w-1/2 md:w-full sm:w-full bg-white'>
+            <div className=' flex-wrap h-full lg:w-1/2 md:w-full sm:w-full bg-white'>
 
 
               <div className='mt-24 pt-6'>
@@ -327,11 +327,9 @@ const WriteCopy = () => {
                 className='block mt-3 p-2.5 w-full text-md text-gray-a900 bg-transparent rounded-lg border-2 border-gray-200 focus:ring-blue-500 focus:border-green-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:italic'
                 rows='16'
                 placeholder='Our AI will output your ad copy here.'
-                >
-                  {copyOutput}
+                value={copyOutput}
+                />             
                 
-                </textarea>
-
 
               {/* <form onSubmit={AiPrompt}>
                     <textarea

@@ -22,7 +22,7 @@ const Dashboard = () => {
   return (
     <div>
       <div className='flex flex-wrap lg:flex-nowrap justify-center'>
-        <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-3xl p-8 pt-9 m-10 mt-2 h-screen w-full relative drop-shadow-lg'>
+        <div className='bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-3xl p-8 pt-9 m-10 mt-2 h-screen w-full relative shadow-lg'>
           {/* Welcome text */}
 
           {/* Top */}
@@ -51,7 +51,7 @@ const Dashboard = () => {
                 )
               }))} */}
               
-              <div className="font-display font-semibold text-9xl drop-shadow-xl mt-5 opacity-100 text-transparent bg-clip-text bg-gradient-to-br from-green-300 to-blue-500">    
+              <div className="font-display font-semibold text-9xl mt-5 opacity-100 text-transparent bg-clip-text bg-gradient-to-br from-green-300 to-blue-500">    
                   <Typewriter
                   options={{
                     strings: ['Riccardo.'],  
