@@ -1,0 +1,15 @@
+.container {
+    width: 150px;
+    height: 150px;
+    background: white;
+    border-radius: 30px;
+  }
+  
+  body {
+    margin: 0;
+    padding:0;
+    font-family: "Open Sans", sans-serif;
+}
+
+  body{zoom: 90%;}
+
