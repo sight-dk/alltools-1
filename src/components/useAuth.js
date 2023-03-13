@@ -7,7 +7,7 @@ export const useAuth = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("/dashboard");
+        const response = await axios.get("https://venv-pu4kpz7p4-sight-dk.vercel.app/dashboard");
         if (response.status === 200) {
           setIsAuthenticated(true);
         }

@@ -4,45 +4,65 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 export const Dashboard = () => {
-  const { isAuthenticated } = useAuth();
+  const [userId, setUserId] = useState(null);
+  const [name, setName] = useState(null);
   const navigate = useNavigate();
-  const [userName, setUserName] = useState('');
+
 
   useEffect(() => {
-    const fetchUserName = async () => {
-      try {
-        const response = await axios.get("https://venv-pu4kpz7p4-sight-dk.vercel.app/dashboard");
-        setUserName(response.data.name);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (isAuthenticated) {
-      fetchUserName();
-    }
-  }, [isAuthenticated]);
+    const token = localStorage.getItem('token');
+    
+    axios.get('http://localhost:3001/api/userinfo', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(response => {
+        const userInfo = response.data;
+        setUserId(userInfo.user_id);
+        setName(userInfo.name);
+      })
+      .catch(error => {
+        alert("notlogged")
+      });
+  }, []);
+  
+  const handleLogout = () => {
 
-  const handleLogout = async () => {
-    try {
-
-      document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      await axios.post("https://venv-pu4kpz7p4-sight-dk.vercel.app/logout");
-      
-
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
+   
+    // EVT FJERNE ENDPOINT OG KUN FJERNE COOKIEN LOCALLY.
+    const token = localStorage.getItem('token');
+    //console.log(token)
+    axios.post('http://localhost:3001/api/logout', null, {
+      headers: {
+        Authorization : `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+    })
+    
+      .then(response => {
+        alert("Logged out successfully");
+        localStorage.removeItem('token'); // remove the token from localStorage
+        navigate("/"); // refresh the page to redirect to the login page
+      })
+      .catch(error => {
+        //console.log(error);
+      });
   };
   
-  return isAuthenticated ? (
+  return (
     <div>
-      Welcome {userName}! You are authenticated.
+      <h1>User Info</h1>
+      {userId && name && (
+        <div>
+          <p>User ID: {userId}</p>
+          <p>Name: {name}</p>
+        </div>
+      )}
       <button onClick={handleLogout}>Logout</button>
     </div>
-  ) : (
-    <div>You are not authenticated.</div>
   );
 };
+
 
 export default Dashboard;
