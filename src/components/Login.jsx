@@ -13,7 +13,7 @@ export const Login = () => {
 
 
   const navigate = useNavigate();
-  
+
   const handleForgot = async () => {
     navigate("/forgotpassword")
   };
@@ -83,21 +83,19 @@ export const Login = () => {
                             <label className = "ml-2 font-medium text-base" htmlFor = "remember">Remember for 30 days</label>
 
                         </div>
-                        <button onClick = {handleForgot} className = "ml-2 font-medium text-base text-violet-500"> Forgot password? </button>
+                        <button onClick = {handleForgot} className = "ml-2 font-medium text-base hover:scale-[.97] hover: duration-75 hover:scale-[1.01 ease-in-out] transition-all"> Forgot password? </button>
                     </div>
                     <div className = "mt-8 flex flex-col gap-y-4">
+                    
                         <button onClick = {handleLogin} className='active:scale-[.97] active: duration-75 hover:scale-[1.01 ease-in-out] transition-all py-3 rounded-md bg-gradient-to-tr from-green-300 to-blue-500 drop-shadow-md text-white text-14 font-bold'> Sign In </button>
-
-
-                        
-                        
-                      
-                        
-                          <Link to="/register" className="text-violet-500 font-medium text-base justify-center">
-                            Don't have an account yet? Sign up now!
-                          </Link>
-                      
+                        <div className="flex items-center justify-center">
+                      <span className="text-gray-500 mr-2 hover:scale-[.97] hover: duration-75 hover:scale-[1.01 ease-in-out] transition-all">Don't have an account?</span>
+                        <Link to="/register" className="text-violet-500 font-medium text-base hover:scale-[.97] hover: duration-75 hover:scale-[1.01 ease-in-out] transition-all">
+                          Sign up
+                        </Link>
                     </div>
+                    </div>
+                   
                 </div>
             </div>
             </div>
