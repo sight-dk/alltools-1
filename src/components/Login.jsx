@@ -20,7 +20,7 @@ export const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:3001/api/login', {
+      const response = await axios.post('https://saturn-sight-dk.vercel.app/api/login', {
         email,
         password,
       });

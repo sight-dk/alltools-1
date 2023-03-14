@@ -26,17 +26,17 @@ export const ResetPassword = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3001/api/reset-password", {
+      const response = await axios.post("https://saturn-sight-dk.vercel.app/api/reset-password", {
         token,
         new_password: newPassword,
       });
 
-     
+      navigate("/")
       
     } catch (error) {
-      alert("error")
+        setErrorMessage("Invalid token");
     }
-    navigate("/")
+    
   };
   return (
     <div className="flex w-full h-screen">

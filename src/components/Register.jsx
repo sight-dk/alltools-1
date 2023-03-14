@@ -22,7 +22,7 @@ export const Register = () =>  {
     }
     // Do something with the email and password, like send it to a server
     try {
-      const response = await axios.post('http://localhost:3001/api/register', {
+      const response = await axios.post('https://saturn-sight-dk.vercel.app/api/register', {
         name,
         lastName,
         email,

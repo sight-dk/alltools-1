@@ -12,7 +12,7 @@ export const Dashboard = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     
-    axios.get('http://localhost:3001/api/userinfo', {
+    axios.get('https://saturn-sight-dk.vercel.app/api/userinfo', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -33,7 +33,7 @@ export const Dashboard = () => {
     // EVT FJERNE ENDPOINT OG KUN FJERNE COOKIEN LOCALLY.
     const token = localStorage.getItem('token');
     //console.log(token)
-    axios.post('http://localhost:3001/api/logout', null, {
+    axios.post('https://saturn-sight-dk.vercel.app/api/logout', null, {
       headers: {
         Authorization : `Bearer ${token}`,
         'Content-Type': 'application/json'

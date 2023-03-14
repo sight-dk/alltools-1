@@ -26,7 +26,7 @@ export const ForgotPassword = () => {
     // Send the reset password email
     try {
 
-      const response = await axios.post('http://localhost:3001/api/forgotpassword', {
+      const response = await axios.post('https://saturn-sight-dk.vercel.app/api/forgotpassword', {
         email,
       });
       
