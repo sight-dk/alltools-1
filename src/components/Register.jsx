@@ -32,7 +32,7 @@ export const Register = () =>  {
       navigate("/dashboard");
     } catch (error) {
       
-      if (error.response.status === 401 && error.response.data.message === 'Email is already taken') {
+      if (error.response.status === 401 || error.response.data.message === 'Email is already taken') {
         setErrorMessage("Email is already taken");
       } else {
         console.error(error);
