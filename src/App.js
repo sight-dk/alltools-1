@@ -13,6 +13,9 @@ import { useStateContext } from './contexts/ContextProvider';
 import './App.css';
 import Dashboard from './pages/Dashboard';
 import {Login} from "./components/Login"
+import {ForgotPassword} from "./components/ForgotPassword"
+import {ResetPassword} from "./components/ResetPassword"
+import {Register} from "./components/Register"
 import { AuthProvider } from './components/auth';
 import { RequireAuth } from './components/RequireAuth';
 
@@ -31,13 +34,15 @@ const App = () => {
               <Routes>
 
                 {/* Dashbboard */}
-                <Route path="/dashboard" element={<RequireAuth><Dashboard/></RequireAuth>} />
+                <Route path="/dashboard" element={<Dashboard/>} />
                 <Route path="/ecommerce" element={<Ecommerce/>} />
-
-                
+                <Route path="/register" element={<Register/>} />
+                <Route path="/forgotpassword" element={<ForgotPassword/>} />
+                <Route path="/reset-password" element={<ResetPassword/>} />
                 {/* Pages */}
                 <Route path="/" element={<Login/>} />
                 <Route path="/dashboard" element={<Dashboard/>}  />
+              
                 {/* <Route path="/orders" element='test' />
                 <Route path="/employees" element='test' />
                 <Route path="/customers" element={<Customers/>} /> */}
